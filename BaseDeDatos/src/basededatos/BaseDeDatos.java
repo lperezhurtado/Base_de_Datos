@@ -11,9 +11,11 @@ import java.util.logging.Logger;
 
 public class BaseDeDatos {
 
+    
 
     public static void main(String[] args) {
         
+        boolean ok;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             
@@ -23,8 +25,8 @@ public class BaseDeDatos {
         
         try {
             String url = "jdbc:mysql://localhost:3306/prueba";
-            String usuario = "root";
-            String password = "123456";
+            String usuario = "luis";
+            String password = "luis";
             
             Connection connection = DriverManager.getConnection(url,usuario,password);
             
@@ -32,6 +34,17 @@ public class BaseDeDatos {
             
             ResultSet rs = statement.executeQuery("SELECT * FROM personas");
             
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                String apellido = rs.getString("apellido");
+                Date fecha = rs.getDate("fecha");
+                
+                System.out.println(String.format("%d, %s %s, %s",id,nombre,apellido,fecha));
+            }
+            
+            
+            ok = statement.execute("INSERT INTO personas (id,nombre,apellido,fecha) values (5, 'luis', 'perez', '1997-07-21')");
             while(rs.next()){
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
