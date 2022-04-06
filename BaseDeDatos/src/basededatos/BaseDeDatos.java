@@ -25,7 +25,7 @@ public class BaseDeDatos {
         
         try {
             String url = "jdbc:mysql://localhost:3306/prueba";
-            String usuario = "luis";
+            String usuario = "root";
             String password = "luis";
             
             Connection connection = DriverManager.getConnection(url,usuario,password);
@@ -44,7 +44,9 @@ public class BaseDeDatos {
             }
             
             
-            ok = statement.execute("INSERT INTO personas (id,nombre,apellido,fecha) values (5, 'luis', 'perez', '1997-07-21')");
+            ok = statement.execute("insert into personas (nombre,apellido,fecha) values ('Luis','Perez','1997-07-21');");
+            System.out.println("");
+            rs = statement.executeQuery("SELECT * FROM personas");
             while(rs.next()){
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
