@@ -6,19 +6,14 @@ import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class BaseDeDatos {
-
-    
 
     public static void main(String[] args) {
         
         boolean ok;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            
         } catch (Exception ex) {
             System.out.println("No se ha encontrado el driver");
         }
@@ -43,7 +38,6 @@ public class BaseDeDatos {
                 System.out.println(String.format("%d, %s %s, %s",id,nombre,apellido,fecha));
             }
             
-            
             ok = statement.execute("insert into personas (nombre,apellido,fecha) values ('Luis','Perez','1997-07-21');");
             System.out.println("");
             rs = statement.executeQuery("SELECT * FROM personas");
@@ -55,7 +49,6 @@ public class BaseDeDatos {
                 
                 System.out.println(String.format("%d, %s %s, %s",id,nombre,apellido,fecha));
             }
-            
             rs.close();
             statement.close();
             connection.close();  
